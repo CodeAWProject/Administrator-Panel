@@ -19,8 +19,8 @@ return new class extends Migration
             $table->decimal('btw');
             $table->string('category')
                 ->nullable();
-
             $table->text('footer');    
+            $table->foreignIdFor(\App\Models\Company::class)->constrained();
             $table->timestamps();
 
         });
