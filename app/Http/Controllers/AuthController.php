@@ -9,6 +9,11 @@ class AuthController extends Controller
 {
 
 
+    public function register()
+    {
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      */
