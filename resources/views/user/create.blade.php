@@ -8,7 +8,7 @@
 
             <div class="mb-8">
                 <label for="Name">Name</label>
-                <x-text-input name="email"></x-text-input>
+                <x-text-input name="name"></x-text-input>
 
                 <label for="email">Email</label>
                 <x-text-input type="email" name="email"></x-text-input>
