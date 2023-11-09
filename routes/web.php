@@ -22,5 +22,4 @@ Route::resource('invoices', InvoiceController::class)
 Route::resource('auth', AuthController::class)
     ->only(['create', 'store', 'register']);
 
-    
 Route::resource('user', UserController::class);    
