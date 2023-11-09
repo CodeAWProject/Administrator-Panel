@@ -46,7 +46,6 @@ class AuthController extends Controller
 
 
         } else {
-            dd('false');
             return redirect()->back();
         }
     }
