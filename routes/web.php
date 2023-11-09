@@ -23,3 +23,7 @@ Route::resource('auth', AuthController::class)
     ->only(['create', 'store', 'register']);
 
 Route::resource('user', UserController::class);    
+
+Route::delete('logout', fn() => to_route('auth.destroy'))->name('logout');
+Route::delete('auth', [AuthController::class, 'destroy'])
+    ->name('auth.destroy');

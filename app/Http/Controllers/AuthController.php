@@ -46,7 +46,8 @@ class AuthController extends Controller
 
 
         } else {
-            return redirect()->back();
+            return redirect()->back()
+                ->with('error', 'Invalid credentials');
         }
     }
 
@@ -55,8 +56,13 @@ class AuthController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy()
     {
-        //
+        Auth::logout();
+
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect()->route('auth.create');
     }
 }

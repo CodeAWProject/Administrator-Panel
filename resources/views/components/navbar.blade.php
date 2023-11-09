@@ -63,7 +63,11 @@
                   
                   
             </div>
-            <a href="">Uitloggen</a>
+            <form action="{{route('auth.destroy')}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button>Uitloggen</button>
+            </form>
         </li>
     </ul>
 
