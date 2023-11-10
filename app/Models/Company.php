@@ -11,6 +11,8 @@ class Company extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['company_name', 'company_legal_form', 'adres_line', 'post_code', 'country', 'kvk_nummer', 'btw_id', 'bank_account'];
+
     public function invoices(): HasMany
     {
         return $this->hasMany(Invoice::class);
@@ -18,7 +20,7 @@ class Company extends Model
 
     public function user(): BelongsTo
     {
-        return $this->BelongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }
 

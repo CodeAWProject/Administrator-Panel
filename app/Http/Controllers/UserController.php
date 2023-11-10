@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(User::class);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -37,6 +42,8 @@ class UserController extends Controller
         ]);
 
         User::create($validatedData);
+
+        return redirect()->route('auth.create');
         
     }
 

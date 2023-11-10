@@ -34,7 +34,20 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'company_name' => 'required',
+            'company_legal_form' => 'required',
+            'adres_line' => 'required',
+            'post_code' => 'required',
+            'country' => 'required',
+            'kvk_nummer' => 'required',
+            'btw_id' => 'required',
+            'bank_account' => 'required',        
+        ]);
+
+        
+        auth()->user()->company()->create($validatedData);
+        return redirect()->route('user.index');
     }
 
     /**

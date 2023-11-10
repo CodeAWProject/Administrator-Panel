@@ -41,7 +41,12 @@ class AuthController extends Controller
         $remember = false;
 
         if(Auth::attempt($credentials, $remember)) {
-            return redirect()->route('user.index');
+            if(auth()->user()->company) {
+                return redirect()->route('user.index');
+            } else {
+                return redirect()->route('company.create');
+            }
+            
             
 
 
