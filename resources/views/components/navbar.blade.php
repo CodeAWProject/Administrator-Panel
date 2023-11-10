@@ -52,7 +52,7 @@
                   </svg>
                   
             </div>
-            <a href="{{route('user.show', auth()->user()->id)}}">Instellingen</a>
+            <a href="{{route('settings', auth()->user()->id)}}">Instellingen</a>
         </li>
 
         <li class="flex">

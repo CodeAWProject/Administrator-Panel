@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,7 @@ Route::resource('invoices', InvoiceController::class)
 Route::resource('auth', AuthController::class)
     ->only(['create', 'store', 'register']);
 
-Route::resource('user', UserController::class);    
+Route::resource('user', UserController::class);
 
 Route::delete('logout', fn() => to_route('auth.destroy'))->name('logout');
 Route::delete('auth', [AuthController::class, 'destroy'])
@@ -31,4 +32,5 @@ Route::delete('auth', [AuthController::class, 'destroy'])
     
 Route::middleware('auth')->group(function () {
     Route::resource('company', CompanyController::class);
+    Route::get('settings', [SettingController::class, 'settings'])->name('settings');
 });
