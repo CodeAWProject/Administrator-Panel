@@ -29,7 +29,7 @@ class CompanyPolicy
      */
     public function create(User $user): bool
     {
-        return null ===$user->company;
+        return null === $user->company;
     }
 
     /**
