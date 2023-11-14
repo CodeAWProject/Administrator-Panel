@@ -61,17 +61,33 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Company $company)
     {
-        //
+        $this->authorize('edit', $company);
+        return view('settings.company.edit', ['company' => $company]);
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Company $company)
     {
-        //
+
+        $validatedData = $request->validate([
+            'company_name' => 'required',
+            'company_legal_form' => 'required',
+            'adres_line' => 'required',
+            'post_code' => 'required',
+            'country' => 'required',
+            'kvk_nummer' => 'required',
+            'btw_id' => 'required',
+            'bank_account' => 'required',        
+        ]);
+
+        auth()->user()->company()->update($validatedData);
+
+        return redirect()->route('company.index');
     }
 
     /**

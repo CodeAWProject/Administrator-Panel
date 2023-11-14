@@ -32,6 +32,11 @@ class CompanyPolicy
         return null === $user->company;
     }
 
+    public function edit(User $user, Company $company):bool
+    {
+        return $user->company->user_id === $user->id;
+    }
+
     /**
      * Determine whether the user can update the model.
      */
