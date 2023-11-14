@@ -21,7 +21,7 @@ class UserPolicy
      */
     public function view(User $user, User $model): bool
     {
-        return null !== $user->company;
+        return $model->id === $user->id;
         
     }
 

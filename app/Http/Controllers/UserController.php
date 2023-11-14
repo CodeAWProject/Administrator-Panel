@@ -54,7 +54,7 @@ class UserController extends Controller
     {
         //$user = auth()->user();
 
-        return view('settings.account.show');
+        return view('settings.account.show', ['user' => $user]);
     }
 
     /**
