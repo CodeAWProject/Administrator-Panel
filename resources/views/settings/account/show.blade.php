@@ -20,7 +20,7 @@
 
                 <div class="flex gap-8">
                     <div>Wachtwoord</div>
-                    <div><a href="" class="underline text-indigo-500">Wijzig je wachtwoord</a></div>
+                    <div><a href="{{route('change_password')}}" class="underline text-indigo-500">Wijzig je wachtwoord</a></div>
                 </div>
                
             </div>
