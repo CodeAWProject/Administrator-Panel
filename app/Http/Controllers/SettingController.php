@@ -24,7 +24,7 @@ class SettingController extends Controller
          $request->validate([
             'current_password' => 'required',
             'password' => 'required',
-            'confirm_password' => 'required|same:password',        
+            'confirm_password' => 'required|same:password'       
         ]);
 
         $current_user = auth()->user();
@@ -38,5 +38,23 @@ class SettingController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+
+    public function editChangeEmail(User $user) {
+        return view('settings.account.change_email');
+    }
+
+    public function updateEmail(Request $request, User $user)
+    {
+        $credentials = $request->validate([
+            'email' => 'required',
+            'confirm_email' => 'required|same:email'
+        ]);
+
+        $current_user = auth()->user();
+
+        $current_user->update($credentials);
+
+        return redirect()->route('user.index');
     }
 }

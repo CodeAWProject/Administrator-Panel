@@ -14,7 +14,7 @@
                 <div class="flex gap-8">
                     <div>E-mailadres</div>
                     <div>{{$user->email}}</div>
-                    <div><a href="" class="underline text-indigo-500">Wijzig e-mail</a></div>
+                    <div><a href="{{route('change_email')}}" class="underline text-indigo-500">Wijzig e-mail</a></div>
                 </div>
 
 

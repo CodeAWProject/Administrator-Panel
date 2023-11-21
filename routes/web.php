@@ -35,4 +35,6 @@ Route::middleware('auth')->group(function () {
     Route::get('settings', [SettingController::class, 'settings'])->name('settings');
     Route::get('change_password', [SettingController::class, 'editChangePassword'])->name('change_password');
     Route::put('update_password/{user}', [SettingController::class, 'updatePassword'])->name('update_password');
+    Route::get('change_email', [SettingController::class, 'editChangeEmail'])->name('change_email');
+    Route::put('update_email/{user}', [SettingController::class, 'updateEmail'])->name('update_email');
 });
