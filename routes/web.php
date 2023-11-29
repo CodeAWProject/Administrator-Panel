@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
@@ -32,6 +33,7 @@ Route::delete('auth', [AuthController::class, 'destroy'])
     
 Route::middleware('auth')->group(function () {
     Route::resource('company', CompanyController::class);
+    Route::resource('customer', CustomerController::class);
     Route::get('settings', [SettingController::class, 'settings'])->name('settings');
     Route::get('change_password', [SettingController::class, 'editChangePassword'])->name('change_password');
     Route::put('update_password/{user}', [SettingController::class, 'updatePassword'])->name('update_password');
