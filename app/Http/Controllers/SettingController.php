@@ -34,7 +34,7 @@ class SettingController extends Controller
                 'password' => bcrypt($request->password)
             ]);
 
-            return redirect()->route('user.index');
+            return redirect()->route('settings');
         } else {
             return redirect()->back();
         }
@@ -55,6 +55,25 @@ class SettingController extends Controller
 
         $current_user->update($credentials);
 
-        return redirect()->route('user.index');
+        return redirect()->route('user.show', $user);
+    }
+
+    public function editUsername(User $user) {
+        return view('settings.account.change_username');
+    }
+
+    public function updateUsername(Request $request, User $user) 
+    {
+        
+        $credentials = $request->validate([
+            'name' => 'required'
+        ]);
+
+        $current_user = auth()->user();
+
+        $current_user->update($credentials);
+
+        return redirect()->route('user.show', $user);
+        
     }
 }

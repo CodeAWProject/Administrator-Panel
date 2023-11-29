@@ -8,7 +8,7 @@
                 <div class="flex gap-8">
                     <div>Gebruikersnaam</div>
                     <div>{{$user->name}}</div>
-                    <div><a href="" class="underline text-indigo-500">Wijzig gebruikersnaam</a></div>
+                    <div><a href="{{route('change_username')}}" class="underline text-indigo-500">Wijzig gebruikersnaam</a></div>
                 </div>
 
                 <div class="flex gap-8">
