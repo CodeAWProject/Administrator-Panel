@@ -6,7 +6,7 @@
         </x-navbar>
         <x-top-nav-bar>
             <h1>Contacten</h1>
-            <a href="">Toevoegen</a>
+            <a href="{{route('customer.create')}}">Toevoegen</a>
         </x-top-nav-bar>
     
         

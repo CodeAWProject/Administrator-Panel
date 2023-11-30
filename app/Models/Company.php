@@ -11,7 +11,7 @@ class Company extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['company_name', 'company_legal_form', 'adres_line', 'post_code', 'country', 'kvk_nummer', 'btw_id', 'bank_account'];
+    protected $fillable = ['company_name', 'company_legal_form', 'adres_line', 'post_code', 'city', 'country', 'kvk_nummer', 'btw_id', 'bank_account'];
 
     public function invoices(): HasMany
     {

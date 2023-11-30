@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -12,7 +13,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('customers.index');
+        return view('customer.index');
     }
 
     /**
@@ -20,7 +21,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customer.create');
     }
 
     /**
@@ -28,7 +29,24 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'last_name' => 'required',
+            'phone_number' => 'required',
+            'customer_number' => 'required',
+            'adres_line' => 'required',
+            'post_code' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'bank_account' => 'required',
+            'email' => 'required',
+            'in_the_name_of' => 'required'
+        ]);
+
+        $company = auth()->user()->company;
+        $company->customers()->create($validatedData);
+
+        return redirect()->route('user.index');
     }
 
     /**

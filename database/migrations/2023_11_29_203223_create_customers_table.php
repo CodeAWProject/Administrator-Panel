@@ -11,23 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name');
-            $table->foreignIdFor(\App\Models\User::class)->constrained();
-            $table->string('company_legal_form');
+            $table->string('name');
+            $table->string('last_name');
+            $table->string('phone_number');
+            $table->integer('customer_number');
+            $table->foreignIdFor(\App\Models\Company::class)->constrained();
             $table->string('adres_line');
             $table->string('post_code');
             $table->string('city');
             $table->string('country');
-            $table->integer('kvk_nummer');
-            $table->string('btw_id');
             $table->string('bank_account');
+            $table->string('email');
+            $table->string('in_the_name_of');
             $table->timestamps();
-    
         });
-
-        
     }
 
     /**
@@ -35,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('customers');
     }
 };

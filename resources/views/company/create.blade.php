@@ -25,6 +25,9 @@
             <label for="post_code">Postcode</label>
             <x-text-input name="post_code" type="text"></x-text-input>
 
+            <label for="city">Plaats</label>
+            <x-text-input name="city" type="text"></x-text-input>
+
             <label for="country">Land</label>
             <x-text-input name="country" type="text"></x-text-input>
 
