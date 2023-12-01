@@ -39,9 +39,21 @@
                     
                 </div>
 
-                <div>
-                    <a href="{{route('customers.edit', $customer)}}">Bewerken</a>
+                <div class="flex mt-6 gap-4 items-center">
+                    <div>
+                        <a href="{{route('customers.edit', $customer)}}" class="rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-center text-sm font-semibold text-black shadow-sm hover:bg-slate-100'">Bewerken</a>
+                    </div>
+                    <div>
+                        <form action="{{route('customers.destroy', $customer)}}" method="POST">
+                            @csrf
+                            
+                            @method('DELETE')
+                            <x-button>Verwijderen</x-button>
+                        </form>
+                    </div>
                 </div>
+
+                
                 
 
                

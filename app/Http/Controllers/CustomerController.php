@@ -50,7 +50,7 @@ class CustomerController extends Controller
         $company = auth()->user()->company;
         $company->customers()->create($validatedData);
 
-        return redirect()->route('user.index');
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -98,8 +98,9 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+        return redirect()->route('customers.index');
     }
 }
