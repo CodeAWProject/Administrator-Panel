@@ -8,7 +8,7 @@
             <h1 class="my-16 text-center text-4xl font-medium text-slate-600">Contact toevoegen</h1>
 
             <x-card class="py-8 px-16">
-                <form action="{{route('customer.store')}}" method="POST">
+                <form action="{{route('customers.store')}}" method="POST">
                     @csrf
 
 

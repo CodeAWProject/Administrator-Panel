@@ -33,7 +33,7 @@ Route::delete('auth', [AuthController::class, 'destroy'])
     
 Route::middleware('auth')->group(function () {
     Route::resource('company', CompanyController::class);
-    Route::resource('customer', CustomerController::class);
+    Route::resource('customers', CustomerController::class);
     Route::get('settings', [SettingController::class, 'settings'])->name('settings');
     Route::get('change_password', [SettingController::class, 'editChangePassword'])->name('change_password');
     Route::put('update_password/{user}', [SettingController::class, 'updatePassword'])->name('update_password');
