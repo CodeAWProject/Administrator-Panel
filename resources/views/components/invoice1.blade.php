@@ -16,15 +16,14 @@
         font-size: x-small;
     }
     .gray {
-        background-color: red;
+        background-color: lightgray
     }
 </style>
 
 </head>
 <body>
 
-<div>
-    <table width="50%">
+    <table width="100%">
     <tr>
         <td valign="top"><img src="" alt="" width="150"/></td>
         <td align="right">
@@ -41,7 +40,7 @@
 
   </table>
 
-  <table width="50%">
+  <table width="100%">
     <tr>
         <td><strong>From:</strong> Linblum - Barrio teatral</td>
         <td><strong>To:</strong> Linblum - Barrio Comercial</td>
@@ -51,7 +50,7 @@
 
   <br/>
 
-  <table width="50%">
+  <table width="100%">
     <thead style="background-color: lightgray;">
       <tr>
         <th>#</th>
@@ -104,8 +103,5 @@
     </tfoot>
   </table>
 
-</div>
-
-  
 </body>
 </html>

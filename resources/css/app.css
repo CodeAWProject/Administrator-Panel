@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 
-.test-css {
-    color: red;
+.invoice-div {
+    width: 50%;
 }

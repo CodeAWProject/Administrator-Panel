@@ -17,4 +17,10 @@ class PDFController extends Controller
         //$pdf = PDF::loadView('components.invoice1');
         //
     }
+
+    public function downloadPDF()
+    {
+        $pdfDownload = PDF::loadView('components.invoice1');
+        return $pdfDownload->download('invoice1.pdf');
+    }
 }
