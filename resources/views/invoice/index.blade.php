@@ -5,12 +5,21 @@
         <x-navbar>
         </x-navbar>
         <x-top-nav-bar>
-            @foreach ($invoices as $invoice)
+            @forelse ($invoices as $invoice)
                 <x-card class="mb-4">
                     {{$invoice->description}}
                 </x-card>
                 
-            @endforeach   
+            @empty
+            <div>
+                <p>Geen facturen</p>    
+            </div>    
+            @endforelse
+            
+            
+            <div class="mt-5">
+                <a href="{{route('invoices.create')}}">Factuur toevogen</a>
+            </div>
         </x-top-nav-bar>
     
         

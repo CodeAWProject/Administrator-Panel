@@ -6,6 +6,7 @@
 
         <title>Laravel Administrator Panel</title>
         @vite('resources/css/app.css')
+        
 
     </head>
     <body class="mx-auto max-w bg-white text-slate-700">

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -19,8 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('invoices', InvoiceController::class)
-    ->only(['index']);
+
 
 Route::resource('auth', AuthController::class)
     ->only(['create', 'store', 'register']);
@@ -34,6 +34,8 @@ Route::delete('auth', [AuthController::class, 'destroy'])
 Route::middleware('auth')->group(function () {
     Route::resource('company', CompanyController::class);
     Route::resource('customers', CustomerController::class);
+    Route::resource('invoices', InvoiceController::class)
+    ->only(['index', 'create']);
     Route::get('settings', [SettingController::class, 'settings'])->name('settings');
     Route::get('change_password', [SettingController::class, 'editChangePassword'])->name('change_password');
     Route::put('update_password/{user}', [SettingController::class, 'updatePassword'])->name('update_password');
@@ -41,5 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::put('update_email/{user}', [SettingController::class, 'updateEmail'])->name('update_email');
     Route::get('change_username', [SettingController::class, 'editUsername'])->name('change_username');
     Route::put('update_username/{user}', [SettingController::class, 'updateUsername'])->name('update_username');
+    Route::post('invoices/view-pdf', [PDFController::class, 'viewPDF'])->name('view_pdf');
 
 });
