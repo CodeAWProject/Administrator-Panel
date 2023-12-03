@@ -76,4 +76,9 @@ class SettingController extends Controller
         return redirect()->route('user.show', $user);
         
     }
+
+    public function invoiceTemplates()
+    {
+        return view('settings.invoice_templates.edit');
+    }
 }

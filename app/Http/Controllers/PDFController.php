@@ -12,7 +12,7 @@ class PDFController extends Controller
     public function viewPDF()
     {
 
-       $pdf = PDF::loadView('components.invoice1');
+       $pdf = PDF::loadView('components.invoice2');
        return $pdf->stream();
         //$pdf = PDF::loadView('components.invoice1');
         //
@@ -20,7 +20,7 @@ class PDFController extends Controller
 
     public function downloadPDF()
     {
-        $pdfDownload = PDF::loadView('components.invoice1');
-        return $pdfDownload->download('invoice1.pdf');
+        $pdfDownload = PDF::loadView('components.invoice2');
+        return $pdfDownload->download('invoice2.pdf');
     }
 }

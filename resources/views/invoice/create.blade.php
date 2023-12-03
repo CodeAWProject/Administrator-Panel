@@ -25,7 +25,7 @@
          
             <section class="py-20">
                 <div class="invoice-div">
-                    <x-invoice1></x-invoice1>
+                    <x-invoice3></x-invoice3>
                 </div>
                     
             </section>

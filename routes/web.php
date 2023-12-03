@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('invoices', InvoiceController::class)
     ->only(['index', 'create']);
     Route::get('settings', [SettingController::class, 'settings'])->name('settings');
+    Route::get('settings/invoice_templates', [SettingController::class, 'invoiceTemplates'])->name('invoice_templates');
     Route::get('change_password', [SettingController::class, 'editChangePassword'])->name('change_password');
     Route::put('update_password/{user}', [SettingController::class, 'updatePassword'])->name('update_password');
     Route::get('change_email', [SettingController::class, 'editChangeEmail'])->name('change_email');

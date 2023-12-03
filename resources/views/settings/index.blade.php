@@ -21,6 +21,10 @@
                 <div>
                     <h3>Sessies</h3>
                 </div>
+
+                <div>
+                    <a href="{{route('invoice_templates')}}">Factuursjablonen</a>
+                </div>
             </div>
             
         </x-top-nav-bar>
