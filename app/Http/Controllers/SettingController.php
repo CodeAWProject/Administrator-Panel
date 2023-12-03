@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
+use App\Models\InvoiceTemplate;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -79,6 +81,27 @@ class SettingController extends Controller
 
     public function invoiceTemplates()
     {
-        return view('settings.invoice_templates.edit');
+
+        return view('settings.invoice_templates.index', ['invoiceTemplates' => InvoiceTemplate::all()]);
     }
+
+    public function changeInvoiceTemplate(string $id)
+    {
+
+        $invoiceTemplate = InvoiceTemplate::find($id);
+        return view('settings.invoice_templates.edit', ['invoiceTemplate' => $invoiceTemplate]);
+    }
+
+    public function updateInvoiceTemplate(Request $request, Company $company)
+    {
+
+        $validatedData = $request->validate([
+            'invoice_template_id' => 'required',       
+        ]);
+
+        auth()->user()->company()->update($validatedData);
+
+        return redirect()->route('invoice_templates');
+    }
+
 }

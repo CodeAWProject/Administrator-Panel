@@ -5,9 +5,7 @@
 <title>Aloha!</title>
 
 <style type="text/css">
-    * {
-        font-family: Verdana, Arial, sans-serif;
-    }
+    
     .invoice-1 table{
         font-size: x-small;
     }

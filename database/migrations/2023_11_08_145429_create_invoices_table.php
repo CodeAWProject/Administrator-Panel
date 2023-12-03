@@ -21,6 +21,7 @@ return new class extends Migration
                 ->nullable();
             $table->text('footer');
             $table->foreignIdFor(\App\Models\Company::class)->constrained(); 
+            $table->foreignIdFor(\App\Models\InvoiceTemplate::class)->nullable();
             $table->timestamps();
 
         });

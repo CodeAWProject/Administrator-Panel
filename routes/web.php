@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function () {
     ->only(['index', 'create']);
     Route::get('settings', [SettingController::class, 'settings'])->name('settings');
     Route::get('settings/invoice_templates', [SettingController::class, 'invoiceTemplates'])->name('invoice_templates');
+    Route::get('settings/invoice_templates/{invoice}', [SettingController::class, 'changeInvoiceTemplate'])->name('changeInvoiceTemplate');
+    Route::put('settings/invoice_templates/update', [SettingController::class, 'updateInvoiceTemplate'])->name('update_invoiceTemplate');
     Route::get('change_password', [SettingController::class, 'editChangePassword'])->name('change_password');
     Route::put('update_password/{user}', [SettingController::class, 'updatePassword'])->name('update_password');
     Route::get('change_email', [SettingController::class, 'editChangeEmail'])->name('change_email');
@@ -46,5 +48,6 @@ Route::middleware('auth')->group(function () {
     Route::put('update_username/{user}', [SettingController::class, 'updateUsername'])->name('update_username');
     Route::post('invoices/view-pdf', [PDFController::class, 'viewPDF'])->name('view_pdf');
     Route::post('invoices/download-pdf', [PDFController::class, 'downloadPDF'])->name('download_pdf');
+    //Route::get('invoice_template/1', [SettingController:: class, 'invoiceTemplate1'])->name('invoice1');
 
 });

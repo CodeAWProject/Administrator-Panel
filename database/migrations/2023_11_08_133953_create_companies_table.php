@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('kvk_nummer');
             $table->string('btw_id');
             $table->string('bank_account');
+            $table->foreignIdFor(\App\Models\InvoiceTemplate::class)->nullable();
             $table->timestamps();
     
         });
