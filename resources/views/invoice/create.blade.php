@@ -25,7 +25,21 @@
          
             <section class="py-20">
                 <div class="invoice-div">
-                    <x-invoice3></x-invoice3>
+
+                    @switch($invoiceTemplate->id)
+                    @case(1)
+                        <x-invoice1></x-invoice1>
+                        @break
+
+                    @case(2)
+                        <x-invoice2></x-invoice2>
+                        @break    
+
+                    @case(3)
+                        <x-invoice3></x-invoice3>
+                        @break 
+                        
+                @endswitch
                 </div>
                     
             </section>

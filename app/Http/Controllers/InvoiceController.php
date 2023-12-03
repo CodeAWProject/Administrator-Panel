@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Invoice;
+use App\Models\InvoiceTemplate;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -21,7 +23,10 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        return view('invoice.create');
+
+        $templateID = auth()->user()->company->invoice_template_id;
+        $invoiceTemplate = InvoiceTemplate::find($templateID);
+        return view('invoice.create', ['invoiceTemplate' => $invoiceTemplate]);
     }
 
     /**
