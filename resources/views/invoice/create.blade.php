@@ -32,7 +32,7 @@
                         @break
 
                     @case(2)
-                        <x-invoice2></x-invoice2>
+                        <x-invoice-create2></x-invoice-create2>
                         @break    
 
                     @case(3)
