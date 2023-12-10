@@ -1,11 +1,13 @@
+@props(['name'])
 <div
-    x-data = "{ show : false}"
+    x-data = "{ show : false, name : '{{ $name }}'}"
     x-show = "show"
-    x-on:open-modal.window="show = true"
+    x-on:open-modal.window="show = ($event.detail.name === name); "
     x-on:close-modal.window="show = false"
     x-on:keydown.escape.window = "show = false"
-
-    class="fixed z-50 inset-0">
+    style="display:none;"
+    class="fixed z-50 inset-0"
+    x-transition.duration.200ms>
     <div class="fixed inset-0 bg-gray-300 opacity-40"></div>
 
     {{-- Modal Body --}}
