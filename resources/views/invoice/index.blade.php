@@ -7,7 +7,7 @@
         <x-top-nav-bar>
             @forelse ($invoices as $invoice)
                 <x-card class="mb-4">
-                    {{$invoice->description}}
+                    {{$invoice->invoice_number}}
                 </x-card>
                 
             @empty
@@ -19,6 +19,8 @@
             
             <div class="mt-5">
                 <a href="{{route('invoices.create')}}">Factuur toevogen</a>
+
+                
             </div>
         </x-top-nav-bar>
     

@@ -12,6 +12,8 @@ class Invoice extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['invoice_number', 'category', 'company_id', 'invoice_template_id', 'customer_id', 'date_issue'];
+
 
     public function company(): BelongsTo
     {

@@ -23,10 +23,10 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-
         $templateID = auth()->user()->company->invoice_template_id;
+        $company = auth()->user()->company;
         $invoiceTemplate = InvoiceTemplate::find($templateID);
-        return view('invoice.create', ['invoiceTemplate' => $invoiceTemplate], ['templateID' => $templateID]);
+        return view('invoice.create', ['invoiceTemplate' => $invoiceTemplate], ['templateID' => $templateID], ['company' => $company]);
     }
 
     /**
@@ -34,7 +34,21 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'customer_id' => 'required',
+            'invoice_number' => 'required',
+            'date_issue' => 'required',
+            'company_id' => 'required',
+            'invoice_template_id' => 'required'                
+        ]);
+
+        
+        $company = auth()->user()->company;
+        $company->invoices()->create($validatedData);
+
+        
+
+        return redirect()->route('invoices.index');
     }
 
     /**

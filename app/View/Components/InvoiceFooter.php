@@ -6,9 +6,9 @@ use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class Invoice1 extends Component
+class InvoiceFooter extends Component
 {
-    /**  
+    /**
      * Create a new component instance.
      */
     public function __construct()
@@ -21,6 +21,6 @@ class Invoice1 extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.invoice1');
+        return view('components.invoice-footer');
     }
 }

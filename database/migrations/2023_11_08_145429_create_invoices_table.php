@@ -16,10 +16,10 @@ return new class extends Migration
             $table->integer('invoice_number');
             $table->string('category')
                 ->nullable();
-            $table->text('footer');
             $table->foreignIdFor(\App\Models\Company::class)->constrained(); 
             $table->foreignIdFor(\App\Models\InvoiceTemplate::class)->nullable();
             $table->foreignIdFor(\App\Models\Customer::class);
+            $table->string('date_issue');
             $table->timestamps();
 
         });

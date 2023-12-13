@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('view_path');
+            $table->text('footer');
             $table->timestamps();
         });
     }
