@@ -25,21 +25,35 @@
          
             <section class="py-20">
                 <div class="invoice-div">
+                    
+                    
+                    @if($templateID)
 
-                    @switch($invoiceTemplate->id)
-                    @case(1)
-                        <x-invoice1></x-invoice1>
-                        @break
-
-                    @case(2)
-                        <x-invoice-create2></x-invoice-create2>
-                        @break    
-
-                    @case(3)
-                        <x-invoice3></x-invoice3>
-                        @break 
+                    
                         
-                @endswitch
+                        @switch($invoiceTemplate->id)
+                        @case(1)
+                            <x-invoice1></x-invoice1>
+                            @break
+
+                        @case(2)
+                            <x-invoice-create2></x-invoice-create2>
+                            @break    
+
+                        @case(3)
+                            <x-invoice3></x-invoice3>
+                            @break 
+                            
+                        @endswitch
+
+                @else 
+                   
+                    <a class="text-indigo-500" href="{{route('invoice_templates')}}">Kies eerst een invoice template</a>
+                @endif 
+                        
+                    
+
+                    
                 </div>
                     
             </section>

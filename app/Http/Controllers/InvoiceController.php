@@ -26,7 +26,7 @@ class InvoiceController extends Controller
 
         $templateID = auth()->user()->company->invoice_template_id;
         $invoiceTemplate = InvoiceTemplate::find($templateID);
-        return view('invoice.create', ['invoiceTemplate' => $invoiceTemplate]);
+        return view('invoice.create', ['invoiceTemplate' => $invoiceTemplate], ['templateID' => $templateID]);
     }
 
     /**

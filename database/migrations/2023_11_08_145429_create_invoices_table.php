@@ -14,14 +14,12 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->integer('invoice_number');
-            $table->text('description');
-            $table->unsignedInteger('amount');
-            $table->decimal('btw');
             $table->string('category')
                 ->nullable();
             $table->text('footer');
             $table->foreignIdFor(\App\Models\Company::class)->constrained(); 
             $table->foreignIdFor(\App\Models\InvoiceTemplate::class)->nullable();
+            $table->foreignIdFor(\App\Models\Customer::class);
             $table->timestamps();
 
         });
