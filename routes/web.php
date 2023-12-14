@@ -5,6 +5,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('company', CompanyController::class);
     Route::resource('customers', CustomerController::class);
     Route::resource('invoices', InvoiceController::class)
-    ->only(['index', 'create', 'store', 'edit']);
+    ->only(['index', 'create', 'store', 'edit', 'update']);
+    Route::resource('service', ServiceController::class);
     Route::get('settings', [SettingController::class, 'settings'])->name('settings');
     Route::get('settings/invoice_templates', [SettingController::class, 'invoiceTemplates'])->name('invoice_templates');
     Route::get('settings/invoice_templates/{invoice}', [SettingController::class, 'changeInvoiceTemplate'])->name('changeInvoiceTemplate');

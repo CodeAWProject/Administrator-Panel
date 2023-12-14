@@ -1,3 +1,12 @@
+<?php
+
+
+$currenInvoice = $invoiceArr["invoice"];
+
+
+?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -77,7 +86,6 @@
 <body>
 
     {{$slot}}
-
     <div class="invoice-2-create">
         <table class="order-details">
             <thead>
@@ -85,13 +93,13 @@
                     <th width="50%" colspan="2" class="text-end company-data">
                         <button x-data x-on:click="$dispatch('open-modal', {name: 'customer-contact'})"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                          </svg> Selecteer een klant
+                          </svg>
                           </button>
-                        <span></span> <br>
-                        <span></span> <br>
-                        <span></span> <br>
-                        <span></span> <br>
-                        <span></span> <br>
+                        
+                        <span>{{$invoiceArr["currentCustommer"]->name}} {{$invoiceArr["currentCustommer"]->last_name}}</span> <br>
+                        <span>{{$invoiceArr["currentCustommer"]->in_the_name_of}}</span> <br>
+                        <span>{{$invoiceArr["currentCustommer"]->adres_line}}</span> <br>
+                        <span>{{$invoiceArr["currentCustommer"]->post_code}} {{$invoiceArr["currentCustommer"]->city}}</span> <br>
                     </th>
                     <th width="50%" colspan="2" class="text-end company-data">
                         <span><b>{{$company->company_name}}</b></span> <br>
@@ -163,10 +171,10 @@
                     
                     <div class="mb-8 grid grid-cols-2 gap-2" >
 
-                        <form action="{{route('invoices.store')}}" method="POST">
+                        <form action="{{route('invoices.update', $currenInvoice->id)}}" method="POST">
                             @csrf
                 
-                            
+                            @method('PUT')
                             <div class="mb-8  gap-2" >
 
                                 <select name="customer_id">
@@ -177,25 +185,17 @@
                                 </select>
 
                                 <label for="invoice_number">Factuurnummer</label>
-                                <x-text-input type="number" name="invoice_number" :value="date('Y')"></x-text-input>
+                                <x-text-input type="number" name="invoice_number" :value="$currenInvoice->invoice_number"></x-text-input>
                 
                                 <label for="date_issue">Factuurdatum</label>
-                                <x-text-input type="text" name="date_issue" :value="date('d-m-Y')"></x-text-input>
+                                <x-text-input type="text" name="date_issue" :value="$currenInvoice->date_issue"></x-text-input>
 
                                 <x-text-input name="company_id" type="hidden" :value="$company->id"></x-text-input>
                                 
-                                
-    
-                                <button type="button">Regel toevoegen</button>
                             </div>
                 
                             <x-button>Opslaan</x-button>
                         </form>
-
-
-                        
-                        
-
                             
                     </div>
             
@@ -212,7 +212,7 @@
                     <div>Bedrag</div>
                 </div>
                 <div class="p-8">
-                    <form action="" method="POST">
+                    <form action="{{route('service.store', $currenInvoice->id)}}" method="POST">
                         @csrf
             
                         <div class="mb-8 grid grid-cols-4 gap-2" >
@@ -220,9 +220,12 @@
             
                             <x-text-input type="text" name="description"></x-text-input>
 
-                            <x-text-input type="number" name="amount"></x-text-input>
+                            <x-text-input type="number" name="btw"></x-text-input>
 
                             <x-text-input type="number" name="amount"></x-text-input>
+
+                            <x-text-input type="hidden" name="invoice_id" :value="$currenInvoice->id"></x-text-input>
+                            
 
                             <button type="button">Regel toevoegen</button>
                         </div>

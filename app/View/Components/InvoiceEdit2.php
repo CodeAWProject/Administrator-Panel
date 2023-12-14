@@ -28,6 +28,8 @@ class InvoiceEdit2 extends Component
 
         $company = auth()->user()->company;
         $CompanyID = auth()->user()->company->id;
+
+        // $currentInvoice = Invoice::find();
         $customers = Customer::where('company_id', '=', $CompanyID)->get();
         return view('components.invoice-edit2',
         ['company' => $company,

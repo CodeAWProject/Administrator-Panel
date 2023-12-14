@@ -10,6 +10,8 @@ class Service extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['number', 'description', 'btw', 'amount', 'invoice_id'];
+
     public function invoice(): BelongsTo
     {
         return $this->belongsTo(Invoice::class);

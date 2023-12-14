@@ -82,6 +82,7 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
+
         $templateID = auth()->user()->company->invoice_template_id;
         $invoiceTemplate = InvoiceTemplate::find($templateID); 
 
@@ -96,7 +97,7 @@ class InvoiceController extends Controller
 
         return view('invoice.edit', 
         [
-            'invoiceArr' => $invoiceArr
+            'invoiceArr' => $invoiceArr,
         ]);
     }
 
@@ -105,7 +106,22 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+        $validatedData = $request->validate([
+            'customer_id' => 'required',
+            'invoice_number' => 'required',
+            'date_issue' => 'required',
+            'company_id' => 'required',              
+        ]);
+        
+        $company = auth()->user()->company;
+
+        $company->invoices()->where('id', $id)->update($validatedData);
+
+        $updatedInvoice = $company->invoices()->find($id);
+        
+
+        return redirect()->route('invoices.edit', $updatedInvoice);
     }
 
     /**
