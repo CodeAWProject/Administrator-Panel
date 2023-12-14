@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use App\Models\Customer;
 use App\Models\Invoice;
 use App\Models\InvoiceTemplate;
 use Illuminate\Http\Request;
@@ -15,7 +16,15 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        return view('invoice.index', ['invoices' => Invoice::all()]);
+
+        $companyID = auth()->user()->company->id;
+
+        
+        return view('invoice.index', 
+        ['invoices' => Invoice::all(),
+        'companyID' => $companyID,
+        'customers' => Customer::where('company_id', '=', $companyID)->get()
+        ]);
     }
 
     /**
@@ -26,14 +35,20 @@ class InvoiceController extends Controller
         $templateID = auth()->user()->company->invoice_template_id;
         $company = auth()->user()->company;
         $invoiceTemplate = InvoiceTemplate::find($templateID);
-        return view('invoice.create', ['invoiceTemplate' => $invoiceTemplate], ['templateID' => $templateID], ['company' => $company]);
+        return view('invoice.create', 
+        [
+            'invoiceTemplate' => $invoiceTemplate, 
+            'templateID' => $templateID, 
+            'company' => $company
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Invoice $invoice)
     {
+    
         $validatedData = $request->validate([
             'customer_id' => 'required',
             'invoice_number' => 'required',
@@ -44,11 +59,14 @@ class InvoiceController extends Controller
 
         
         $company = auth()->user()->company;
-        $company->invoices()->create($validatedData);
+        // $company->invoices()->create($validatedData);
 
+        $newInvoice = $company->invoices()->create($validatedData);
+        
+        $newlyCreatedId = $newInvoice->id;
         
 
-        return redirect()->route('invoices.index');
+        return redirect()->route('invoices.edit', ['invoice' =>$newlyCreatedId]);
     }
 
     /**
@@ -62,9 +80,24 @@ class InvoiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Invoice $invoice)
     {
-        //
+        $templateID = auth()->user()->company->invoice_template_id;
+        $invoiceTemplate = InvoiceTemplate::find($templateID); 
+
+        $custommerID = $invoice->customer_id;
+        $currentCustommer = Customer::find($custommerID);
+
+        $invoiceArr = [
+            'invoice' => $invoice,
+            'invoiceTemplate' => $invoiceTemplate,
+            'currentCustommer' => $currentCustommer,
+        ];
+
+        return view('invoice.edit', 
+        [
+            'invoiceArr' => $invoiceArr
+        ]);
     }
 
     /**

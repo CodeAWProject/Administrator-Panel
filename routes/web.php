@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('company', CompanyController::class);
     Route::resource('customers', CustomerController::class);
     Route::resource('invoices', InvoiceController::class)
-    ->only(['index', 'create', 'store']);
+    ->only(['index', 'create', 'store', 'edit']);
     Route::get('settings', [SettingController::class, 'settings'])->name('settings');
     Route::get('settings/invoice_templates', [SettingController::class, 'invoiceTemplates'])->name('invoice_templates');
     Route::get('settings/invoice_templates/{invoice}', [SettingController::class, 'changeInvoiceTemplate'])->name('changeInvoiceTemplate');
