@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Invoice;
 use App\Models\InvoiceTemplate;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -88,11 +89,13 @@ class InvoiceController extends Controller
 
         $custommerID = $invoice->customer_id;
         $currentCustommer = Customer::find($custommerID);
-
+        
+        $currentServices = Service::where('invoice_id', $invoice->id)->get();
         $invoiceArr = [
             'invoice' => $invoice,
             'invoiceTemplate' => $invoiceTemplate,
             'currentCustommer' => $currentCustommer,
+            'currentServices' => $currentServices
         ];
 
         return view('invoice.edit', 

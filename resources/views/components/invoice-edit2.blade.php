@@ -131,16 +131,19 @@ $currenInvoice = $invoiceArr["invoice"];
                 </tr>
             </thead>
             <tbody>
+                @foreach ($invoiceArr["currentServices"] as $service)
+                    
                 
                 <tr>
-                    <td width="10%"></td>
+                    <td width="10%">{{$service->number}}</td>
                     <td>
-                        
+                        {{$service->description}}
                     </td>
-                    <td width="10%"></td>
-                    <td width="10%"></td>
+                    <td width="10%">{{$service->amount}}</td>
+                    <td width="10%">{{$service->btw}}</td>
                     <td width="15%" class="fw-bold"></td>
                 </tr>
+                @endforeach
                 <tr>
                     <td colspan="4" class="total-heading">Total Amount - <small>Inc. all vat/tax</small> :</td>
                     <td colspan="1" class="total-heading">$14699</td>
