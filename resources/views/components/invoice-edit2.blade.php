@@ -85,7 +85,6 @@ $currenInvoice = $invoiceArr["invoice"];
 </head>
 <body>
 
-    {{$slot}}
     <div class="invoice-2-create">
         <table class="order-details">
             <thead>

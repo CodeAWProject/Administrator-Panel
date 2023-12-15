@@ -81,6 +81,10 @@ class InvoiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+
+     private $invoiceArr;
+
+     // FIXME
     public function edit(Invoice $invoice)
     {
 
@@ -91,7 +95,7 @@ class InvoiceController extends Controller
         $currentCustommer = Customer::find($custommerID);
         
         $currentServices = Service::where('invoice_id', $invoice->id)->get();
-        $invoiceArr = [
+        $this->invoiceArr = [
             'invoice' => $invoice,
             'invoiceTemplate' => $invoiceTemplate,
             'currentCustommer' => $currentCustommer,
@@ -100,7 +104,7 @@ class InvoiceController extends Controller
 
         return view('invoice.edit', 
         [
-            'invoiceArr' => $invoiceArr,
+            'invoiceArr' => $this->invoiceArr,
         ]);
     }
 

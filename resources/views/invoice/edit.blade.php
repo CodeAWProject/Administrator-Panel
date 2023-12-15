@@ -8,7 +8,7 @@
 
             <div class="flex gap-3">
                 <div>
-                    <form action="{{route('view_pdf')}}" method="POST" target="__blank">
+                    <form action="{{route('view_edit_pdf', ['id' => $invoiceArr["invoice"]->id])}}" method="POST" target="__blank">
                         @csrf
                         <x-button>View PDF</x-button>
                     </form>
