@@ -7,7 +7,22 @@
         <x-top-nav-bar>
             <h1 class="mb-4">Tasks</h1>
 
+            {{-- @dd($responseData) --}}
 
+            {{-- @for ($i = 0; $i < $responseData; $i++)
+                {{$responseData[$i]}}
+            @endfor --}}
+
+            @foreach ($responseData as $task)
+
+                <div class="flex">
+                    <div>{{$task["name"]}}</div>
+                    <div>{{$task["priority"]}}</div>
+                    <div>{{$task["is_completed"]}}</div>
+                </div>
+                
+                
+            @endforeach
 
             <x-button x-data x-on:click="$dispatch('open-modal', {name: 'task'})">Task aanmaken</x-button>
             

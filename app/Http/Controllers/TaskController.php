@@ -12,9 +12,27 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
+    
     public function index()
     {
-        return view('task.index');
+
+        $acces_token = session()->get('access_token')[0];
+        $url = 'http://localhost/APICoursePHP/todolistAPI/api/tasks';
+        $headers = [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $acces_token,
+            ]
+        ];
+
+
+        $client = new Client();
+
+        $response = $client->get($url, $headers);
+
+        $responseData = json_decode($response->getBody(), true);
+
+        return view('task.index', ['responseData' => $responseData]);
     }
 
     /**
