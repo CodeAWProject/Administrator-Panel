@@ -63,6 +63,10 @@ class AuthController extends Controller
      */
     public function destroy()
     {
+
+        $revolkeTokens = new SessionController();
+
+        $revolkeTokens->deleteTokens();
         Auth::logout();
 
         request()->session()->invalidate();

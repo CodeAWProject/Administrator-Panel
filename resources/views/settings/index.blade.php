@@ -25,6 +25,10 @@
                 <div>
                     <a href="{{route('invoice_templates')}}">Factuursjablonen</a>
                 </div>
+
+                <div>
+                    <a href="{{route('tokens')}}">Tokens</a>
+                </div>
             </div>
             
         </x-top-nav-bar>

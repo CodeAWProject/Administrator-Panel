@@ -1,3 +1,4 @@
+
 <x-layout>
 
 
@@ -8,7 +9,7 @@
 
             <div class="flex gap-3">
                 <div>
-                    <form action="{{route('view_edit_pdf', ['id' => $invoiceArr["invoice"]->id])}}" method="POST" target="__blank">
+                    <form action="{{route('view_edit_pdf', ['id' => $invoiceArr["invoice"]->id])}}" method="POST" target="__blank" onSubmit="delayReload(event)">
                         @csrf
                         <x-button>View PDF</x-button>
                     </form>
@@ -50,6 +51,5 @@
     
         
     </div>
-
     
 </x-layout>

@@ -11,7 +11,7 @@ $currenInvoice = $invoiceArr["invoice"];
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Aloha!</title>
+<title>Invoice2</title>
 
 <style type="text/css">
     html,

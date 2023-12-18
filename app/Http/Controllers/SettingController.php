@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Session;
 
 class SettingController extends Controller
 {
@@ -102,6 +104,29 @@ class SettingController extends Controller
         auth()->user()->company()->update($validatedData);
 
         return redirect()->route('invoice_templates');
+    }
+
+
+    public function taskIndexTokens()
+    {
+        return view('settings.tasks_api.index');
+    }
+
+    public function taskGetTokens(Request $request)
+    {
+        $response = Http::post('http://localhost/APICoursePHP/todolistAPI/api/login.php', [
+            'username' => 'john',
+            'password' => 'secret',
+        ]);
+
+        $arr = $response->json();
+        $accessToken = $arr["access_token"];
+        $refreshToken = $arr["refresh_token"];
+        
+        $request->session()->push('access_token',  $accessToken);
+        $request->session()->push('refresh_token',  $refreshToken);
+
+        return redirect()->route('tokens');
     }
 
 }
