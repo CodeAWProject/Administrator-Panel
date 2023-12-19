@@ -76,7 +76,7 @@ class TaskController extends Controller
 
         $response = $client->post($url, $headers + ['json' => $data]);
 
-        $responseData = json_decode($response->getBody(), true);
+        // $responseData = json_decode($response->getBody(), true);
 
         
 
@@ -113,6 +113,25 @@ class TaskController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+
+        $acces_token = session()->get('access_token')[0];
+        $url = 'http://localhost/APICoursePHP/todolistAPI/api/tasks/' . $id;
+       
+        $headers = [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $acces_token,
+            ]
+        ];
+
+        $client = new Client();
+
+        $response = $client->delete($url, $headers);
+
+        // $responseData = json_decode($response->getBody(), true);
+
+
+        return redirect()->route('tasks.index');
     }
 }

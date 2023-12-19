@@ -1,4 +1,4 @@
-@props(['name'])
+@props(['name' , 'id'])
 <div
     x-data = "{ show : false, name : '{{ $name }}'}"
     x-show = "show"

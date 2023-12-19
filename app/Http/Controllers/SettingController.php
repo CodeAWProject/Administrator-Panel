@@ -109,13 +109,14 @@ class SettingController extends Controller
 
     public function taskIndexTokens()
     {
+        
         return view('settings.tasks_api.index');
     }
 
     public function taskGetTokens(Request $request)
     {
         $response = Http::post('http://localhost/APICoursePHP/todolistAPI/api/login.php', [
-            'username' => 'john',
+            'username' => 'John',
             'password' => 'secret',
         ]);
 
