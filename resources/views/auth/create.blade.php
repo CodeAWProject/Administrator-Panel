@@ -7,9 +7,10 @@
         @csrf
 
         <div class="mb-8">
-            <label for="email">Email</label>
+            <x-label for="email" :required="true"></x-label>
             <x-text-input type="email" name="email"></x-text-input>
-            <label for="password">Password</label>
+
+            <x-label for="password" :required="true"></x-label>
             <x-text-input type="password" name="password"></x-text-input>
         </div>
 

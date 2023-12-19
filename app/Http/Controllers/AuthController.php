@@ -47,9 +47,6 @@ class AuthController extends Controller
                 return redirect()->route('company.create');
             }
             
-            
-
-
         } else {
             return redirect()->back()
                 ->with('error', 'Invalid credentials');

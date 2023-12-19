@@ -6,17 +6,14 @@ use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class TextInput extends Component
+class Label extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public ?string $value = null,
-        public ?string $name = null,
-        public ?string $placeholder = null,
-        public ?string $formRef = null,
-        public ?string $type = 'text'
+        public ?string $for = '',
+        public ?bool $required = false
     )
     {
         //
@@ -27,6 +24,6 @@ class TextInput extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.text-input');
+        return view('components.label');
     }
 }
