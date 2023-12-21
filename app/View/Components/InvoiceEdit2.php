@@ -23,8 +23,13 @@ class InvoiceEdit2 extends Component
     /**
      * Get the view / contents that represent the component.
      */
+
+     
+
+
     public function render(): View|Closure|string
     {
+        
 
         $company = auth()->user()->company;
         $CompanyID = auth()->user()->company->id;

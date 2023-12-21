@@ -4,15 +4,14 @@
 $currenInvoice = $invoiceArr["invoice"];
 
 
-function calc($amount, $btw)
+function calc($amount, $btw, $number)
 {
     $calcBTW = (100 + $btw) / 100;
-    $calcTotal = $amount * $calcBTW;
+    $calcTotal = $amount * $calcBTW * $number;
 
     return $calcTotal;
 }
 
-$total = 'calc';
 
 $sum = 0;
 ?>
@@ -112,6 +111,13 @@ $sum = 0;
                         <span>{{$invoiceArr["currentCustommer"]->post_code}} {{$invoiceArr["currentCustommer"]->city}}</span> <br>
                     </th>
                     <th width="50%" colspan="2" class="text-end company-data">
+                        <form action="{{route('company.edit', ['company' => $company->id])}}">
+                            <x-button>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                  </svg>
+                            </x-button>
+                        </form>
                         <span><b>{{$company->company_name}}</b></span> <br>
                         <span>{{$company->adres_line}}</span> <br>
                         <span>{{$company->post_code}} {{$company->city}}</span> <br>
@@ -131,6 +137,8 @@ $sum = 0;
               </svg>
               </button>
             <thead>
+
+                <h1>{{$currenInvoice->invoice_number}}</h1>
                 
                 <tr class="bg-blue">
                     <th>Aantal</th>
@@ -145,7 +153,7 @@ $sum = 0;
                 <?php
                   
             
-                $sum += $total($service->amount, $service->btw);
+                $sum += calc($service->amount, $service->btw, $service->number);
 
                 ?>    
                 
@@ -156,11 +164,11 @@ $sum = 0;
                     </td>
                     <td width="10%">€{{$service->amount}}</td>
                     <td width="10%">{{intval($service->btw)}}%</td>
-                    <td width="15%" class="fw-bold">€{{$total($service->amount, $service->btw)}}</td>
+                    <td width="15%" class="fw-bold">€{{calc($service->amount, $service->btw, $service->number)}}</td>
                 </tr>
                 @endforeach
                 <tr>
-                    <td colspan="4" class="total-heading">Total Amount - <small>Inc. all vat/tax</small> :</td>
+                    <td colspan="4" class="total-heading">Totaal- <small>Inc. btw</small> :</td>
                     <td colspan="1" class="total-heading">€{{$sum}}</td>
                 </tr>
 
