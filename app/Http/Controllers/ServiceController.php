@@ -74,8 +74,12 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service)
+    public function destroy(Request $request, Service $service)
     {
-        //
+        
+        $invoiceID = $request->input('invoice_id');
+        $service->delete();
+
+        return redirect()->route('invoices.edit', ['invoice' => $invoiceID]);
     }
 }

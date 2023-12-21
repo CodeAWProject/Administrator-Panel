@@ -93,13 +93,15 @@ class InvoiceController extends Controller
 
         $custommerID = $invoice->customer_id;
         $currentCustommer = Customer::find($custommerID);
+
+    
         
         $currentServices = Service::where('invoice_id', $invoice->id)->get();
         $this->invoiceArr = [
             'invoice' => $invoice,
             'invoiceTemplate' => $invoiceTemplate,
             'currentCustommer' => $currentCustommer,
-            'currentServices' => $currentServices
+            'currentServices' => $currentServices,
         ];
 
         return view('invoice.edit', 

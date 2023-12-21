@@ -4,6 +4,17 @@
 $currenInvoice = $invoiceArr["invoice"];
 
 
+function calc($amount, $btw)
+{
+    $calcBTW = (100 + $btw) / 100;
+    $calcTotal = $amount * $calcBTW;
+
+    return $calcTotal;
+}
+
+$total = 'calc';
+
+$sum = 0;
 ?>
 
 
@@ -131,21 +142,26 @@ $currenInvoice = $invoiceArr["invoice"];
             </thead>
             <tbody>
                 @foreach ($invoiceArr["currentServices"] as $service)
-                    
+                <?php
+                  
+            
+                $sum += $total($service->amount, $service->btw);
+
+                ?>    
                 
                 <tr>
                     <td width="10%">{{$service->number}}</td>
                     <td>
                         {{$service->description}}
                     </td>
-                    <td width="10%">{{$service->amount}}</td>
-                    <td width="10%">{{$service->btw}}</td>
-                    <td width="15%" class="fw-bold"></td>
+                    <td width="10%">€{{$service->amount}}</td>
+                    <td width="10%">{{intval($service->btw)}}%</td>
+                    <td width="15%" class="fw-bold">€{{$total($service->amount, $service->btw)}}</td>
                 </tr>
                 @endforeach
                 <tr>
                     <td colspan="4" class="total-heading">Total Amount - <small>Inc. all vat/tax</small> :</td>
-                    <td colspan="1" class="total-heading">$14699</td>
+                    <td colspan="1" class="total-heading">€{{$sum}}</td>
                 </tr>
 
                 <tr>
@@ -207,17 +223,17 @@ $currenInvoice = $invoiceArr["invoice"];
 
         <x-modal name="services">
             <x-slot:body>
-                <div class="grid grid-cols-4 p-8">
+                <div class="grid grid-cols-5 p-8">
                     <div>Aantal</div>
                     <div>Omschrijving</div>
                     <div>Btw</div>
                     <div>Bedrag</div>
                 </div>
                 <div class="p-8">
-                    <form action="{{route('service.store', $currenInvoice->id)}}" method="POST">
+                    <form action="{{route('service.store', $currenInvoice->id)}}" method="POST" class="mb-4">
                         @csrf
             
-                        <div class="mb-8 grid grid-cols-4 gap-2" >
+                        <div class="mb-8 grid grid-cols-5 gap-2" >
                             <x-text-input type="number" name="number"></x-text-input>
             
                             <x-text-input type="text" name="description"></x-text-input>
@@ -228,12 +244,32 @@ $currenInvoice = $invoiceArr["invoice"];
 
                             <x-text-input type="hidden" name="invoice_id" :value="$currenInvoice->id"></x-text-input>
                             
-
-                            <button type="button">Regel toevoegen</button>
                         </div>
             
                         <x-button>Opslaan</x-button>
                     </form>
+
+                    <hr class="mb-4">
+
+                    <div class="mb-8 grid grid-cols-5 gap-2">
+                        @foreach ($invoiceArr["currentServices"] as $service)
+                            <div>{{$service->number}}</div>
+                            <div>{{$service->description}}</div>
+                            <div>{{$service->btw}}</div>
+                            <div>{{$service->amount}}</div>
+
+                            <form action="{{route('service.destroy', $service->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+
+                                <x-text-input type="hidden" name="invoice_id" value="{{$currenInvoice->id}}"></x-text-input>
+                                <x-button><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                  </svg>
+                                  </x-button>
+                            </form>
+                        @endforeach
+                    </div>
                 </div>
                 
             </x-slot>
