@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomerRequest;
 use App\Models\Company;
 use App\Models\Customer;
 use App\Models\User;
@@ -31,24 +32,12 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'last_name' => 'required',
-            'phone_number' => 'required',
-            'customer_number' => 'required',
-            'adres_line' => 'required',
-            'post_code' => 'required',
-            'city' => 'required',
-            'country' => 'required',
-            'bank_account' => 'required',
-            'email' => 'required',
-            'in_the_name_of' => 'required'
-        ]);
+        $validated = $request->validated();
 
         $company = auth()->user()->company;
-        $company->customers()->create($validatedData);
+        $company->customers()->create($validated);
 
         return redirect()->route('customers.index');
     }
@@ -74,23 +63,12 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Customer $customer)
+    public function update(CustomerRequest $request, Customer $customer)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'last_name' => 'required',
-            'phone_number' => 'required',
-            'customer_number' => 'required',
-            'adres_line' => 'required',
-            'post_code' => 'required',
-            'city' => 'required',
-            'country' => 'required',
-            'bank_account' => 'required',
-            'email' => 'required',
-            'in_the_name_of' => 'required'
-        ]);
+        
+        $validated = $request->validated();
 
-        $customer->update($validatedData);
+        $customer->update($validated);
 
         return redirect()->route('customers.show', $customer);
     }
