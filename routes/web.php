@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::get('change_username', [SettingController::class, 'editUsername'])->name('change_username');
     Route::put('update_username/{user}', [SettingController::class, 'updateUsername'])->name('update_username');
     Route::post('invoices/view-pdf/', [PDFController::class, 'viewPDF'])->name('view_pdf');
-    Route::post('invoices/download-pdf', [PDFController::class, 'downloadPDF'])->name('download_pdf');
+    Route::post('invoices/download-pdf/{id}/', [PDFController::class, 'downloadPDF'])->name('download_pdf');
     Route::post('invoices/view-edit-pdf/{id}/', [PDFController::class, 'viewEditPDF'])->name('view_edit_pdf');
     Route::get('tokens', [SettingController::class, 'taskIndexTokens'])->name('tokens');
     Route::get('getTokens', [SettingController::class, 'taskGetTokens'])->name('getTokens');

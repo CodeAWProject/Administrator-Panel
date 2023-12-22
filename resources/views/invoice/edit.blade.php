@@ -16,7 +16,7 @@
                 </div>
     
                 <div>
-                    <form action="{{route('download_pdf')}}" method="POST">
+                    <form action="{{route('download_pdf', ['id' => $invoiceArr["invoice"]->id])}}" method="POST" target="__blank">
                         @csrf
                         <x-button >Download PDF</x-button>
                     </form>
