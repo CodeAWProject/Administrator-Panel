@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -32,22 +33,11 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
-        $validatedData = $request->validate([
-            'company_name' => 'required',
-            'company_legal_form' => 'required',
-            'adres_line' => 'required',
-            'post_code' => 'required',
-            'city' => 'required',
-            'country' => 'required',
-            'kvk_nummer' => 'required',
-            'btw_id' => 'required',
-            'bank_account' => 'required',        
-        ]);
-
+        $validated = $request->validated();
         
-        auth()->user()->company()->create($validatedData);
+        auth()->user()->company()->create($validated);
         return redirect()->route('user.index');
     }
 
@@ -72,22 +62,11 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyRequest $request, Company $company)
     {
 
-        $validatedData = $request->validate([
-            'company_name' => 'required',
-            'company_legal_form' => 'required',
-            'adres_line' => 'required',
-            'post_code' => 'required',
-            'city' => 'required',
-            'country' => 'required',
-            'kvk_nummer' => 'required',
-            'btw_id' => 'required',
-            'bank_account' => 'required',        
-        ]);
-
-        auth()->user()->company()->update($validatedData);
+        $validated = $request->validated();
+        auth()->user()->company()->update($validated);
 
         return redirect()->route('company.index');
     }
