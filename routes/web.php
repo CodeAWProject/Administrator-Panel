@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('tasks', TaskController::class);
     
     Route::resource('service', ServiceController::class);
-    Route::post('service/updateAll', [ServiceController::class, 'updateAll'])->name('updateAll');
+    Route::put('service/updateAll/{id}', [ServiceController::class, 'updateAll'])->name('updateAll');
     Route::get('settings', [SettingController::class, 'settings'])->name('settings');
     Route::get('settings/invoice_templates', [SettingController::class, 'invoiceTemplates'])->name('invoice_templates');
     Route::get('settings/invoice_templates/{invoice}', [SettingController::class, 'changeInvoiceTemplate'])->name('changeInvoiceTemplate');

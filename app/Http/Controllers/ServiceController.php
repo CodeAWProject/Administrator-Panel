@@ -71,11 +71,9 @@ class ServiceController extends Controller
         
     }
 
-    public function updateAll(Request $request)
+    public function updateAll(Request $request, string $id)
     {
         $data = $request->all();
-
-        // dd($data);
 
         foreach ($data as $key => $value) {
             if (preg_match('/^number(\d+)$/', $key, $matches)) {
@@ -93,7 +91,7 @@ class ServiceController extends Controller
             }
         }
 
-        return redirect()->route('invoices.index');
+        return redirect()->route('invoices.edit', $id);
     }
 
     /**

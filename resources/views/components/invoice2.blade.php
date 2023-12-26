@@ -80,16 +80,15 @@
             <thead>
                 <tr>
                     <th width="50%" colspan="2" class="text-end company-data">
-                        <span>Fulfilment Group B.V.</span> <br>
-                        <span>T.a.v. B. V.</span> <br>
-                        <span>2331CN Leiden</span> <br>
-                        <span>Weg en Land 16:</span> <br>
-                        <span>2661DB Bergschenhoek</span> <br>
+                        <span>Klant</span> <br>
+                        <span>T.a.v.</span> <br>
+                        <span>Straat + Huisnummer</span> <br>
+                        <span>Postcode + Woonplaatst</span> <br>
                     </th>
                     <th width="50%" colspan="2" class="text-end company-data">
-                        <span><b>Activityware</b></span> <br>
-                        <span>Elisabeth Brugsmastraat 4</span> <br>
-                        <span>2331CN Leiden</span> <br>
+                        <span><b>Bedrijfsnaam</b></span> <br>
+                        <span>Straat + Huisnummer</span> <br>
+                        <span>Postcode + Woonplaatst</span> <br>
                         <span>KvK</span> <br>
                         <span>Btw:</span> <br>
                         <span>Bank:</span> <br>

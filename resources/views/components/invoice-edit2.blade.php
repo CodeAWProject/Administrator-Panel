@@ -274,9 +274,9 @@ $sum = 0;
 
                     <hr class="mb-4">
  
-                                <form action="{{route('updateAll')}}" method="POST" class="mb-4">
+                                <form action="{{route('updateAll', $currenInvoice->id)}}" method="POST" class="mb-4">
                                     @csrf
-                                    
+                                    @method('PUT')
                         <div class="">
                             <div class="">
                                 @foreach ($invoiceArr["currentServices"] as $service)

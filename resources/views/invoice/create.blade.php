@@ -14,12 +14,6 @@
                     </form>
                 </div>
     
-                <div>
-                    <form action="{{route('download_pdf')}}" method="POST">
-                        @csrf
-                        <x-button>Download PDF</x-button>
-                    </form>
-                </div>
             </div>
             
          

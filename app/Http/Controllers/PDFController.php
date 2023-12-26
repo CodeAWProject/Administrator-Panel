@@ -21,18 +21,14 @@ class PDFController extends InvoiceController
     }
 
     //FIXME
-    public function viewPDF(Request $request, string $id)
+    public function viewPDF(Request $request)
     {
         
         $templateID = auth()->user()->company->invoice_template_id;
         $invoiceTemplate = InvoiceTemplate::find($templateID); 
-        //$pdf = SnappyPdf::loadView($invoiceTemplate->view_path);
-
-       $html = view('components.invoice-edit2')->render();
-       $pdf = SnappyPdf::loadHTML($html);
-       return $pdf->stream('invoice.pdf');
-        //$pdf = PDF::loadView('components.invoice1');
-        //
+        $pdf = SnappyPdf::loadView($invoiceTemplate->view_path);
+       
+        return $pdf->stream('invoice.pdf');
     }
 
 
