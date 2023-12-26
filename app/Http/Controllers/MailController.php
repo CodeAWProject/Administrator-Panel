@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Mail\MyTestEmail;
+use App\Mail\MyInvoiceEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -18,7 +18,7 @@ class MailController extends Controller
         $name = "Funny Coder";
         $file = $pdf->output();
 
-        Mail::to('patrykr1324@gmail.com')->send(new MyTestEmail($name, $file));
+        Mail::to('patrykr1324@gmail.com')->send(new MyInvoiceEmail($name, $file));
         return redirect()->route('invoices.index');
 
         // dd($file);

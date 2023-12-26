@@ -279,21 +279,25 @@ $sum = 0;
                                     
                         <div class="">
                             <div class="">
-                                    
-                        @foreach ($invoiceArr["currentServices"] as $service)
-                                    <div class="grid grid-cols-5 gap-2 mb-4">
-                                        <x-text-input type="number" name="number" value="{{$service->number}}"></x-text-input>
+                                @foreach ($invoiceArr["currentServices"] as $service)
+
+                                
+                                <div class="grid grid-cols-5 gap-2 mb-4">
                         
-                                        <x-text-input type="text" name="description" value="{{$service->description}}"></x-text-input>
-            
-                                        <x-text-input type="number" name="btw" value="{{$service->btw}}"></x-text-input>
-            
-                                        <x-text-input type="number" name="amount" value="€{{calc($service->amount, $service->btw, $service->number)}}"></x-text-input>
                                         
-                                        
-                                    </div>
-                        @endforeach
-                                          
+                                        <x-text-input type="number" name="number{{$service->id}}" value="{{$service->number}}"></x-text-input>
+                        
+                                        <x-text-input type="text" name="description{{$service->id}}" value="{{$service->description}}"></x-text-input>
+            
+                                        <x-text-input type="number" name="btw{{$service->id}}" value="{{$service->btw}}"></x-text-input>
+            
+                                        <x-text-input type="number" name="amount{{$service->id}}" :value="$service->amount"></x-text-input>
+
+                                        <x-text-input type="hidden" name="id{{$service->id}}" value="{{$service->id}}"></x-text-input>
+                                  
+                        
+                                </div>
+                                @endforeach          
                                     <x-button class="col-span-1"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                                       </svg>

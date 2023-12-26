@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class MyTestEmail extends Mailable
+class MyInvoiceEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -38,7 +38,7 @@ class MyTestEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.test-email',
+            view: 'mail.invoice-email',
             with: ['name' => $this->name]
         );
     }

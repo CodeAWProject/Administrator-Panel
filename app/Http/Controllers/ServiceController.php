@@ -73,7 +73,27 @@ class ServiceController extends Controller
 
     public function updateAll(Request $request)
     {
-        dd($request);
+        $data = $request->all();
+
+        // dd($data);
+
+        foreach ($data as $key => $value) {
+            if (preg_match('/^number(\d+)$/', $key, $matches)) {
+                $number =  $matches[1];
+
+                $service = Service::find($data["id$number"]);
+
+                if ($service) {
+                    $service->update([
+                        'description' => $data["description$number"],
+                        'btw' => $data["btw$number"],
+                        'amount' => $data["amount$number"],
+                    ]);
+                } 
+            }
+        }
+
+        return redirect()->route('invoices.index');
     }
 
     /**
