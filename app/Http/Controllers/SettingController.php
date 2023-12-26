@@ -129,5 +129,6 @@ class SettingController extends Controller
 
         return redirect()->route('tokens');
     }
+    
 
 }

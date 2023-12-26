@@ -68,7 +68,12 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        
+    }
+
+    public function updateAll(Request $request)
+    {
+        dd($request);
     }
 
     /**

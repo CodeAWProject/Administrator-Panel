@@ -159,8 +159,23 @@ $sum = 0;
                 
                 <tr>
                     <td width="10%">{{$service->number}}</td>
-                    <td>
-                        {{$service->description}}
+                    <td class="grid grid-cols-5">
+                        <div class="col-span-4">
+                            {{$service->description}}
+                        </div>
+                        
+                        <div>
+                            <form action="{{route('service.destroy', $service->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+
+                                <x-text-input type="hidden" name="invoice_id" value="{{$currenInvoice->id}}"></x-text-input>
+                                <x-button><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                  </svg>
+                                  </x-button>
+                            </form>
+                        </div>
                     </td>
                     <td width="10%">€{{$service->amount}}</td>
                     <td width="10%">{{intval($service->btw)}}%</td>
@@ -258,26 +273,38 @@ $sum = 0;
                     </form>
 
                     <hr class="mb-4">
-
-                    <div class="mb-8 grid grid-cols-5 gap-2">
+ 
+                                <form action="{{route('updateAll')}}" method="POST" class="mb-4">
+                                    @csrf
+                                    
+                        <div class="">
+                            <div class="">
+                                    
                         @foreach ($invoiceArr["currentServices"] as $service)
-                            <div>{{$service->number}}</div>
-                            <div>{{$service->description}}</div>
-                            <div>{{$service->btw}}</div>
-                            <div>{{$service->amount}}</div>
-
-                            <form action="{{route('service.destroy', $service->id)}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-
-                                <x-text-input type="hidden" name="invoice_id" value="{{$currenInvoice->id}}"></x-text-input>
-                                <x-button><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                  </svg>
-                                  </x-button>
-                            </form>
+                                    <div class="grid grid-cols-5 gap-2 mb-4">
+                                        <x-text-input type="number" name="number" value="{{$service->number}}"></x-text-input>
+                        
+                                        <x-text-input type="text" name="description" value="{{$service->description}}"></x-text-input>
+            
+                                        <x-text-input type="number" name="btw" value="{{$service->btw}}"></x-text-input>
+            
+                                        <x-text-input type="number" name="amount" value="€{{calc($service->amount, $service->btw, $service->number)}}"></x-text-input>
+                                        
+                                        
+                                    </div>
                         @endforeach
-                    </div>
+                                          
+                                    <x-button class="col-span-1"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                      </svg>
+                                    </x-button>
+                           
+                                </form>
+                                @foreach ($invoiceArr["currentServices"] as $service)         
+                            </div>
+                                        
+                        </div>
+                        @endforeach
                 </div>
                 
             </x-slot>

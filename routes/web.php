@@ -4,11 +4,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,7 +41,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('invoices', InvoiceController::class)
     ->only(['index', 'create', 'store', 'edit', 'update']);
     Route::resource('tasks', TaskController::class);
+    
     Route::resource('service', ServiceController::class);
+    Route::post('service/updateAll', [ServiceController::class, 'updateAll'])->name('updateAll');
     Route::get('settings', [SettingController::class, 'settings'])->name('settings');
     Route::get('settings/invoice_templates', [SettingController::class, 'invoiceTemplates'])->name('invoice_templates');
     Route::get('settings/invoice_templates/{invoice}', [SettingController::class, 'changeInvoiceTemplate'])->name('changeInvoiceTemplate');
@@ -55,6 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::post('invoices/view-edit-pdf/{id}/', [PDFController::class, 'viewEditPDF'])->name('view_edit_pdf');
     Route::get('tokens', [SettingController::class, 'taskIndexTokens'])->name('tokens');
     Route::get('getTokens', [SettingController::class, 'taskGetTokens'])->name('getTokens');
+    Route::post('sendMail/{id}', [MailController::class, 'sendMail'])->name('sendMail');
     //Route::get('invoice_template/1', [SettingController:: class, 'invoiceTemplate1'])->name('invoice1');
 
 });

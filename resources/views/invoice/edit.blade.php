@@ -21,6 +21,14 @@
                         <x-button >Download PDF</x-button>
                     </form>
                 </div>
+
+
+                <div>
+                    <form action="{{route('sendMail', ['id' => $invoiceArr["invoice"]->id])}}" method="POST">
+                        @csrf
+                        <x-button >Verzenden</x-button>
+                    </form>
+                </div>
             </div>
             
          
